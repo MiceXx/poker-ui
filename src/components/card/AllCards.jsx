@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import { ALL_CARDS } from '../../constants';
 import CardContent from '@material-ui/core/CardContent';
-import SelectRank from './SelectRank';
-import SelectSuit from './SelectSuit';
 
 const styles = {
-    card: {
-        width: 330,
-    },
     title: {
         fontSize: 14,
     },
@@ -24,8 +20,11 @@ function SimpleCard(props) {
     return (
         <Card className={classes.card}>
             <CardContent>
-                <SelectRank />
-                <SelectSuit />
+                <div className="hand hhand-compact active-hand">
+                    {ALL_CARDS.map(card => (
+                        <img className='card' key={card} src={`/images/cards/${card}.svg`} />
+                    ))}
+                </div>
             </CardContent>
         </Card >
     );

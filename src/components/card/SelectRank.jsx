@@ -1,81 +1,51 @@
+
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import { CARD_RANKS } from '../../constants';
 
 const styles = theme => ({
-    root: {
+    container: {
         display: 'flex',
         flexWrap: 'wrap',
     },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120,
-    },
 });
 
-class SimpleSelect extends React.Component {
+class OutlinedTextFields extends React.Component {
     state = {
-        age: '',
-        name: 'hai',
-        labelWidth: 0,
+        multiline: 'Controlled',
+        rank: 'x',
     };
 
-    componentDidMount() {
+    handleChange = name => event => {
         this.setState({
-            labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+            [name]: event.target.value,
         });
-    }
-
-    handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
     };
 
     render() {
         const { classes } = this.props;
 
         return (
-            <form className={classes.root}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel
-                        ref={ref => {
-                            this.InputLabelRef = ref;
-                        }}
-                        htmlFor="rank"
-                    >
-                        Age
-          </InputLabel>
-                    <Select
-                        value={this.state.age}
-                        onChange={this.handleChange}
-                        input={
-                            <OutlinedInput
-                                labelWidth={this.state.labelWidth}
-                                name="rank"
-                                id="rank"
-                            />
-                        }
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
+            <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                    select
+                    label="Rank"
+                    value={this.state.rank}
+                    onChange={this.handleChange('rank')}
+                    variant="outlined"
+                >
+                    {CARD_RANKS.map(rank => <MenuItem value={rank} key={rank}>{rank}</MenuItem>)}
+                </TextField>
             </form>
         );
     }
 }
 
-SimpleSelect.propTypes = {
+OutlinedTextFields.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleSelect);
+export default withStyles(styles)(OutlinedTextFields);

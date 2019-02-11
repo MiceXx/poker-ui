@@ -1,10 +1,10 @@
 import React from 'react';
-import HandCard from './card/HandCard';
+import AllCards from './card/AllCards';
 
 
 function SimpleCard() {
     return (
-        <HandCard />
+        <AllCards />
     );
 }
 
