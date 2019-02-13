@@ -7,7 +7,7 @@ function AllCards() {
         <div style={{ margin: 15 }}>
             <div className="hand hhand-compact active-hand">
                 {ALL_CARDS.map(card => (
-                    <img className='card' key={card} src={`/images/cards/${card}.svg`} />
+                    <img className='card' key={card} src={`/images/cards/${card}.svg`} alt='' />
                 ))}
             </div>
         </div >
@@ -15,7 +15,6 @@ function AllCards() {
 }
 
 AllCards.propTypes = {
-    classes: PropTypes.object.isRequired,
 };
 
 export default AllCards;

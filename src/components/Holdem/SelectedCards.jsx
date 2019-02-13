@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SimpleCard() {
+function SelectedCards() {
     return (
         <div className={{ margin: 20 }}>
             {'Win Chance'}
@@ -9,8 +9,7 @@ function SimpleCard() {
     );
 }
 
-SimpleCard.propTypes = {
-    classes: PropTypes.object.isRequired,
+SelectedCards.propTypes = {
 };
 
-export default SimpleCard;
+export default SelectedCards;
