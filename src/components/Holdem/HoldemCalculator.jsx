@@ -1,5 +1,5 @@
 import React from 'react';
-import AllCards from '../card/AllCards';
+import AllCards from './AllCards';
 import SelectedCards from './SelectedCards';
 
 

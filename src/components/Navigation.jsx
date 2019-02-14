@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import { ReactComponent as PokerChipIcon } from '../icons/poker-chip.svg';
-import { ReactComponent as PlayingCardsIcon } from '../icons/playing-cards.svg';
-import { ReactComponent as Dice } from '../icons/dice.svg';
+import { Route } from 'react-router-dom';
 
-const buttons = [
+import HoldEmCalculator from './Holdem/HoldemCalculator';
+
+const navOptions = [
     {
         key: 'holdem',
         to: '/holdem',
@@ -31,16 +30,19 @@ class SimpleBottomNavigation extends React.Component {
 
     render() {
         return (
-            <Menu>
-                {buttons.map(button => (
-                    <Menu.Item
+            <div>
+                <Menu fluid widths={3}>
+                    {navOptions.map(item => <Menu.Item
                         as={Link}
-                        {...button}
-                        onClick={this.handleItemClick}
-                    />
-                )
-                )}
-            </Menu>
+                        {...item}
+                        onClick={this.handleItemClick} />
+                    )}
+                </Menu>
+                <Route exact path="/" component={HoldEmCalculator} />
+                <Route path="/holdem" component={HoldEmCalculator} />
+                <Route path="/omaha" component={HoldEmCalculator} />
+                <Route path="/stud" component={HoldEmCalculator} />
+            </div>
         );
     }
 }
