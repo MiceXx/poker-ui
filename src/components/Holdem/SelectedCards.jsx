@@ -2,16 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { selectCard } from '../../store/holdem/actions';
+import { unselectCard } from '../../store/holdem/actions';
 
 function SelectedCards(props) {
-    const { selectedCards } = props;
+    const { selectedCards, unselectCard } = props;
     return (
         <Segment>
             {'Win Chance'}
-            {selectedCards.map(card => (
-                <img className='card' key={card} src={`/images/cards/${card}.svg`} alt='' />
-            ))}
+            <div className="hand  active-hand">
+                {selectedCards.map(card => (
+                    <img
+                        className='card'
+                        key={card}
+                        src={`/images/cards/${card}.svg`}
+                        onClick={() => unselectCard(card)}
+                        alt='' />
+                ))}
+            </div>
         </Segment>
     );
 }
@@ -28,6 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        unselectCard: card => dispatch(unselectCard(card)),
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SelectedCards);

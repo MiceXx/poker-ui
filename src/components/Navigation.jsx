@@ -4,6 +4,7 @@ import { Menu } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 
 import HoldEmCalculator from './Holdem/HoldemCalculator';
+import TestComponent from './TestComponent/TestComponent';
 
 const navOptions = [
     {
@@ -20,6 +21,11 @@ const navOptions = [
         key: 'stud',
         to: '/stud',
         name: 'Stud',
+    },
+    {
+        key: 'test',
+        to: '/test',
+        name: 'Test',
     },
 ];
 
@@ -42,6 +48,7 @@ class SimpleBottomNavigation extends React.Component {
                 <Route path="/holdem" component={HoldEmCalculator} />
                 <Route path="/omaha" component={HoldEmCalculator} />
                 <Route path="/stud" component={HoldEmCalculator} />
+                <Route path="/test" component={TestComponent} />
             </div>
         );
     }

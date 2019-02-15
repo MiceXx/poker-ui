@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import { selectCard } from '../../store/holdem/actions';
 
-/*
- *
- * @param {array} props
- */
 function AllCards(props) {
     const { availableCards, selectCard } = props;
 
