@@ -8,4 +8,6 @@ export const CARD_SUITS = [
 
 export const ALL_CARDS = [];
 
+export const ALL_SEATS = [1,2,3,4,5,6,7,8];
+
 CARD_SUITS.forEach(suit => CARD_RANKS.map(rank => ALL_CARDS.push(`${rank}${suit}`)));
