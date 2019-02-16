@@ -10,7 +10,7 @@ function AllCards(props) {
     const { availableCards, selectCard } = props;
 
     return (
-        <Segment>
+        <Segment textAlign='center'>
             <div className="hand hhand-compact active-hand">
                 {availableCards.map(card => (
                     <img

@@ -8,7 +8,6 @@ function HoldemCalculator() {
     return (
         <div>
             <PokerTable />
-            <SelectedCards />
             <AllCards />
         </div>
     );

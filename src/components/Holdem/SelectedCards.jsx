@@ -7,7 +7,7 @@ import { unselectCard } from '../../store/holdem/actions';
 function SelectedCards(props) {
     const { selectedCards, unselectCard } = props;
     return (
-        <Segment>
+        <div>
             {'Win Chance'}
             <div className="hand  active-hand">
                 {selectedCards.map(card => (
@@ -19,7 +19,7 @@ function SelectedCards(props) {
                         alt='' />
                 ))}
             </div>
-        </Segment>
+        </div>
     );
 }
 

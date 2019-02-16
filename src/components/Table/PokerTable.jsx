@@ -1,36 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Grid } from 'semantic-ui-react';
+import { Segment, Grid, Image, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PokerSeat from './PokerSeat';
+import TableMenu from './TableMenu';
+
+const containerRowStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+}
+
+const containerMiddleStyle = {
+    display: 'flex',
+    justifyContent: 'space-between'
+}
+
+const containerDivStyle = {
+    display: 'inline-block',
+    padding: '5px',
+}
+
 function PokerTable(props) {
-    const { seats } = props;
     return (
-        <Segment>
-            <Grid columns={3}>
-                <Grid.Row>
-                    {seats.map(seat => {
-                        if (seat % 3 === 0) {
-                            return (
-                                <Grid.Column>
-                                    <PokerSeat
-                                        key={seat}
-                                        position={seat} />
-                                </Grid.Column>
-                            )
-                        }
-                        return (
-                            <Grid.Row>
-                                <PokerSeat
-                                    key={seat}
-                                    position={seat} />
-                            </Grid.Row>
-                        )
-                    }
+        <React.Fragment>
+            <TableMenu />
+            <Segment style={{ maxWidth: '900px', minWidth: '620' }}>
+                <div style={containerRowStyle}>
+                    {[0, 1, 2, 3].map(seat => (
+                        <div
+                            key={`seat${seat}`}
+                            style={containerDivStyle}>
+                            <PokerSeat
+                                position={seat} />
+                        </div>
+                    )
                     )}
-                </Grid.Row>
-            </Grid>
-        </Segment>
+                </div>
+                <div style={containerMiddleStyle}>
+                    <div key={'seat8'} style={containerDivStyle}>
+                        <PokerSeat
+                            position={8} />
+                    </div>
+                    <div key={'seat4'} style={containerDivStyle}>
+                        <PokerSeat
+                            position={4} />
+                    </div>
+                </div>
+                <div style={containerRowStyle}>
+                    {[7, 6, 5].map(seat => (
+                        <div key={`seat${seat}`} style={containerDivStyle}>
+                            <PokerSeat
+                                position={seat} />
+                        </div>
+                    )
+                    )}
+                </div>
+            </Segment>
+        </React.Fragment>
     );
 }
 
