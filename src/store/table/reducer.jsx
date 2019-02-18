@@ -5,6 +5,8 @@ import {
     SELECT_PLAYER_SEAT,
     SELECT_DEALER_POSITION,
     SELECT_NEXT_DEALER,
+    ADD_PLAYER,
+    REMOVE_PLAYER,
 } from './actions';
 
 const initialState = {
@@ -14,14 +16,24 @@ const initialState = {
     dealerPosition: 4,
 }
 
-export default function holdem(state = Object.assign({}, initialState), action) {
+export default function table(state = Object.assign({}, initialState), action) {
     switch (action.type) {
         case SELECT_PLAYER_SEAT:
-        return Object.assign({}, state, {selectedSeat: action.position})
+            return Object.assign({}, state, { selectedSeat: action.position });
         case SELECT_DEALER_POSITION:
-        return Object.assign({}, state, {dealerPosition: action.dealerPosition})
+            return Object.assign({}, state, { dealerPosition: action.dealerPosition });
         case SELECT_NEXT_DEALER:
-        return Object.assign({}, state, {dealerPosition: (state.dealerPosition + 1) % state.numberPlayers})
+            return Object.assign({}, state, { dealerPosition: (state.dealerPosition + 1) % state.numberPlayers });
+        case ADD_PLAYER:
+            if (state.numberPlayers < 9) {
+                return Object.assign({}, state, { numberPlayers: state.numberPlayers + 1 });
+            }
+            return state;
+        case REMOVE_PLAYER:
+            if (state.numberPlayers > 2) {
+                return Object.assign({}, state, { numberPlayers: state.numberPlayers - 1 });
+            }
+            return state;
         default:
             return state;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Grid, Image, Container } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PokerSeat from './PokerSeat';
 import TableMenu from './TableMenu';
@@ -23,7 +23,6 @@ const containerDivStyle = {
 function PokerTable(props) {
     return (
         <React.Fragment>
-            <TableMenu />
             <Segment style={{ maxWidth: '900px', minWidth: '620' }}>
                 <div style={containerRowStyle}>
                     {[0, 1, 2, 3].map(seat => (
@@ -52,9 +51,9 @@ function PokerTable(props) {
                             <PokerSeat
                                 position={seat} />
                         </div>
-                    )
-                    )}
+                    ))}
                 </div>
+                <TableMenu />
             </Segment>
         </React.Fragment>
     );
@@ -66,7 +65,7 @@ PokerTable.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        seats: state.table.seats
+        seats: state.table.seats,
     }
 };
 

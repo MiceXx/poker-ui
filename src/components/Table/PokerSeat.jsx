@@ -1,32 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Icon, Button, Label } from 'semantic-ui-react';
+import { Segment, Icon, Label, Header } from 'semantic-ui-react';
 import { selectPlayerSeat, selectDealerPosition } from '../../store/table/actions';
 import { connect } from 'react-redux';
 import SelectedCards from '../Holdem/SelectedCards';
 
+const headerStyle = {
+    cursor: 'pointer',
+}
+
+const labelStyle = {
+    left: '80%',
+    top: '-0.5em',
+}
+
 class PokerTable extends React.Component {
 
     getRibbon() {
-        const { dealerPosition, position } = this.props;
-        if (dealerPosition === position) {
+        const { dealerPosition, position, numberPlayers } = this.props;
+        if (dealerPosition % numberPlayers === position) {
             return <Label
-                attached='bottom'
+                floating
+                style={labelStyle}
+                size='mini'
                 content='Dealer'
                 color='blue'
             />
         }
-        if ((dealerPosition + 1) % 9 === position) {
+        if ((dealerPosition + 1) % numberPlayers === position) {
             return <Label
-                attached='bottom'
-                content='Small Blind'
+                floating
+                style={labelStyle}
+                size='mini'
+                content='SB'
                 color='teal'
             />
         }
-        if ((dealerPosition + 2) % 9 === position) {
+        if ((dealerPosition + 2) % numberPlayers === position) {
             return <Label
-                attached='bottom'
-                content='Big Blind'
+                floating
+                style={labelStyle}
+                size='mini'
+                content='BB'
                 color='green'
             />
         }
@@ -34,25 +49,20 @@ class PokerTable extends React.Component {
     }
 
     render() {
-        const { selectedSeat, position, selectPlayerSeat } = this.props;
-
+        const { selectedSeat, position, selectPlayerSeat, numberPlayers } = this.props;
         return (
-            <Card raised style={{ maxWidth: '170px' }} >
-                <Icon
-                    as={Button}
-                    circular
-                    basic
-                    icon={selectedSeat === position ? 'user' : 'circle outline'}
-                    onClick={() => selectPlayerSeat(position)}
-                    floated='right' />
-                <Card.Content>
-                    {this.getRibbon()}
-                    <Card.Header>{`Seat ${position}`}</Card.Header>
-                    <Card.Description>
-                        {selectedSeat === position && <SelectedCards />}
-                    </Card.Description>
-                </Card.Content>
-            </Card>
+            <Segment circular disabled={position >= numberPlayers}>
+                <Header as='h6'
+                    style={headerStyle}
+                    onClick={() => selectPlayerSeat(position)}>
+                    <Icon
+                        size='mini'
+                        name={selectedSeat === position ? 'user' : 'circle outline'} />
+                    <Header.Content style={{ padding: '3px' }}>{`Seat ${position}`}</Header.Content>
+                </Header>
+                {this.getRibbon()}
+                {selectedSeat === position && <SelectedCards />}
+            </Segment>
         );
     }
 }
@@ -61,12 +71,14 @@ PokerTable.propTypes = {
     position: PropTypes.number.isRequired,
     selectedSeat: PropTypes.number.isRequired,
     dealerPosition: PropTypes.number.isRequired,
+    numberPlayers: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
     return {
         selectedSeat: state.table.selectedSeat,
         dealerPosition: state.table.dealerPosition,
+        numberPlayers: state.table.numberPlayers,
     }
 };
 
