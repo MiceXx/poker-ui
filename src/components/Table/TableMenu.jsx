@@ -4,18 +4,21 @@ import { Button } from 'semantic-ui-react';
 import { selectNextDealer, addPlayer, removePlayer } from '../../store/table/actions';
 import { connect } from 'react-redux';
 
-const tableStyle = {
-    float: 'right',
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    padding: '5px',
+const TableMenu_style = {
+    table: {
+        backgroundColor: 'white',
+        borderRadius: '5px',
+        position: 'absolute',
+        top: '5px',
+        left: '5px',
+        width: '135px',
+    }
 }
 
 function TableMenu(props) {
     const { selectNextDealer, addPlayer, removePlayer, numberPlayers } = props;
     return (
-        <Button.Group vertical labeled icon size='mini' style={tableStyle}>
+        <Button.Group vertical labeled icon size='mini' style={TableMenu_style.table}>
             <Button
                 onClick={selectNextDealer}
                 primary
@@ -30,12 +33,12 @@ function TableMenu(props) {
             <Button
                 onClick={addPlayer}
                 positive
-                disabled={ numberPlayers >= 9}
+                disabled={numberPlayers >= 9}
                 icon='plus'
                 content='Add Player' />
             <Button
                 onClick={removePlayer}
-                disabled={ numberPlayers <= 2}
+                disabled={numberPlayers <= 2}
                 color='red'
                 icon='minus'
                 content='Remove Player' />

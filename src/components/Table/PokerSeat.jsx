@@ -5,13 +5,20 @@ import { selectPlayerSeat, selectDealerPosition } from '../../store/table/action
 import { connect } from 'react-redux';
 import SelectedCards from '../Holdem/SelectedCards';
 
-const headerStyle = {
-    cursor: 'pointer',
-}
-
-const labelStyle = {
-    left: '80%',
-    top: '-0.5em',
+const PokerSeat_styles = {
+    segment: {
+        minWidth: '170px',
+        maxWidth: '170px',
+        minHeight: '180px',
+        maxHeight: '168px',
+    },
+    header: {
+        cursor: 'pointer',
+    },
+    label: {
+        left: '95%',
+        top: '-0.5em',
+    }
 }
 
 class PokerTable extends React.Component {
@@ -21,7 +28,7 @@ class PokerTable extends React.Component {
         if (dealerPosition % numberPlayers === position) {
             return <Label
                 floating
-                style={labelStyle}
+                style={PokerSeat_styles.label}
                 size='mini'
                 content='Dealer'
                 color='blue'
@@ -30,7 +37,7 @@ class PokerTable extends React.Component {
         if ((dealerPosition + 1) % numberPlayers === position) {
             return <Label
                 floating
-                style={labelStyle}
+                style={PokerSeat_styles.label}
                 size='mini'
                 content='SB'
                 color='teal'
@@ -39,7 +46,7 @@ class PokerTable extends React.Component {
         if ((dealerPosition + 2) % numberPlayers === position) {
             return <Label
                 floating
-                style={labelStyle}
+                style={PokerSeat_styles.label}
                 size='mini'
                 content='BB'
                 color='green'
@@ -51,9 +58,9 @@ class PokerTable extends React.Component {
     render() {
         const { selectedSeat, position, selectPlayerSeat, numberPlayers } = this.props;
         return (
-            <Segment circular disabled={position >= numberPlayers}>
+            <Segment disabled={position >= numberPlayers} style={PokerSeat_styles.segment}>
                 <Header as='h6'
-                    style={headerStyle}
+                    style={PokerSeat_styles.header}
                     onClick={() => selectPlayerSeat(position)}>
                     <Icon
                         size='mini'

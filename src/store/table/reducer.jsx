@@ -12,8 +12,8 @@ import {
 const initialState = {
     seats: ALL_SEATS,
     numberPlayers: 9,
-    selectedSeat: 4,
-    dealerPosition: 4,
+    selectedSeat: 6,
+    dealerPosition: 6,
 }
 
 export default function table(state = Object.assign({}, initialState), action) {

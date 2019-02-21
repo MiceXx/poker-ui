@@ -6,11 +6,17 @@ import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import { selectCard } from '../../store/holdem/actions';
 
+const AllCards_style = {
+    color: {
+    backgroundColor: 'rgb(169, 236, 248)'
+    }
+}
+
 function AllCards(props) {
     const { availableCards, selectCard } = props;
 
     return (
-        <Segment textAlign='center'>
+        <Segment textAlign='center' style={AllCards_style.color}>
             <div className="hand hhand-compact active-hand">
                 {availableCards.map(card => (
                     <img

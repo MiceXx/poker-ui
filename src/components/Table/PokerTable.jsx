@@ -1,53 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PokerSeat from './PokerSeat';
 import TableMenu from './TableMenu';
 
-const containerRowStyle = {
-    display: 'flex',
-    justifyContent: 'center'
-}
-
-const containerMiddleStyle = {
-    display: 'flex',
-    justifyContent: 'space-between'
-}
-
-const containerDivStyle = {
-    display: 'inline-block',
-    padding: '5px',
+const PokerTable_style = {
+    container:{
+        backgroundColor: 'grey',
+    },
+    segment: {
+        minWidth: '840px',
+        background: `url(${require('./table.png')}) center no-repeat`,
+        backgroundSize: '90%',
+    },
+    containerRow: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    containerMiddle: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+    containerDiv: {
+        display: 'inline-block',
+        padding: '5px',
+    }
 }
 
 function PokerTable(props) {
     return (
-        <React.Fragment>
-            <Segment style={{ maxWidth: '900px', minWidth: '620' }}>
-                <div style={containerRowStyle}>
+        <Container textAlign='center' style={PokerTable_style.container}>
+            <Segment style={PokerTable_style.segment}>
+                <div style={PokerTable_style.containerRow}>
                     {[0, 1, 2, 3].map(seat => (
                         <div
                             key={`seat${seat}`}
-                            style={containerDivStyle}>
+                            style={PokerTable_style.containerDiv}>
                             <PokerSeat
                                 position={seat} />
                         </div>
                     )
                     )}
                 </div>
-                <div style={containerMiddleStyle}>
-                    <div key={'seat8'} style={containerDivStyle}>
+                <div style={PokerTable_style.containerMiddle}>
+                    <div key={'seat8'} style={PokerTable_style.containerDiv}>
                         <PokerSeat
                             position={8} />
                     </div>
-                    <div key={'seat4'} style={containerDivStyle}>
+                    <div key={'seat4'} style={PokerTable_style.containerDiv}>
                         <PokerSeat
                             position={4} />
                     </div>
                 </div>
-                <div style={containerRowStyle}>
+                <div style={PokerTable_style.containerRow}>
                     {[7, 6, 5].map(seat => (
-                        <div key={`seat${seat}`} style={containerDivStyle}>
+                        <div key={`seat${seat}`} style={PokerTable_style.containerDiv}>
                             <PokerSeat
                                 position={seat} />
                         </div>
@@ -55,7 +63,7 @@ function PokerTable(props) {
                 </div>
                 <TableMenu />
             </Segment>
-        </React.Fragment>
+        </Container>
     );
 }
 

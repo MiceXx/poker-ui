@@ -37,7 +37,7 @@ class SimpleBottomNavigation extends React.Component {
     render() {
         return (
             <div>
-                <Menu fluid widths={4}>
+                <Menu fluid widths={4} inverted>
                     {navOptions.map(item => <Menu.Item
                         as={Link}
                         {...item}
