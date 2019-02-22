@@ -6,11 +6,11 @@ import PokerSeat from './PokerSeat';
 import TableMenu from './TableMenu';
 
 const PokerTable_style = {
-    container:{
+    container: {
         backgroundColor: 'grey',
+        minWidth: '1030px',
     },
     segment: {
-        minWidth: '840px',
         background: `url(${require('./table.png')}) center no-repeat`,
         backgroundSize: '90%',
     },
@@ -31,7 +31,7 @@ const PokerTable_style = {
 function PokerTable(props) {
     return (
         <Container textAlign='center' style={PokerTable_style.container}>
-            <Segment style={PokerTable_style.segment}>
+            <Segment style={PokerTable_style.segment} floated>
                 <div style={PokerTable_style.containerRow}>
                     {[0, 1, 2, 3].map(seat => (
                         <div

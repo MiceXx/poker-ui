@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Segment, Icon, Label, Header } from 'semantic-ui-react';
+import { Segment,  Label,Button } from 'semantic-ui-react';
 import { selectPlayerSeat, selectDealerPosition } from '../../store/table/actions';
 import { connect } from 'react-redux';
 import SelectedCards from '../Holdem/SelectedCards';
@@ -12,9 +12,6 @@ const PokerSeat_styles = {
         minHeight: '180px',
         maxHeight: '168px',
     },
-    header: {
-        cursor: 'pointer',
-    },
     label: {
         left: '95%',
         top: '-0.5em',
@@ -22,6 +19,9 @@ const PokerSeat_styles = {
 }
 
 class PokerTable extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     getRibbon() {
         const { dealerPosition, position, numberPlayers } = this.props;
@@ -54,19 +54,19 @@ class PokerTable extends React.Component {
         }
         return null;
     }
-
     render() {
-        const { selectedSeat, position, selectPlayerSeat, numberPlayers } = this.props;
+        const { selectedSeat, position, numberPlayers, selectPlayerSeat } = this.props;
         return (
             <Segment disabled={position >= numberPlayers} style={PokerSeat_styles.segment}>
-                <Header as='h6'
-                    style={PokerSeat_styles.header}
-                    onClick={() => selectPlayerSeat(position)}>
-                    <Icon
-                        size='mini'
-                        name={selectedSeat === position ? 'user' : 'circle outline'} />
-                    <Header.Content style={{ padding: '3px' }}>{`Seat ${position}`}</Header.Content>
-                </Header>
+                <Button
+                    circular
+                    size='mini'
+                    icon='user'
+                    disabled = {position > numberPlayers - 1}
+                    basic={selectedSeat !== position}
+                    color={selectedSeat === position ? 'green' : 'grey'}
+                    content={`Seat ${position}`}
+                    onClick={()=>selectPlayerSeat(position)} />
                 {this.getRibbon()}
                 {selectedSeat === position && <SelectedCards />}
             </Segment>
