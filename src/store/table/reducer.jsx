@@ -21,7 +21,7 @@ const initialState = {
 export default function table(state = Object.assign({}, initialState), action) {
     switch (action.type) {
         case SELECT_PLAYER_SEAT:
-            return Object.assign({}, state, { selectedSeat: action.position, dealingPosition: action.position });
+            return Object.assign({}, state, { selectedSeat: action.position });
         case SELECT_DEALER_POSITION:
             return Object.assign({}, state, { dealerPosition: action.dealerPosition });
         case SELECT_NEXT_DEALER:
