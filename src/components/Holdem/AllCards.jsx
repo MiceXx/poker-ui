@@ -8,12 +8,12 @@ import { selectCard } from '../../store/holdem/actions';
 
 const AllCards_style = {
     color: {
-    backgroundColor: 'rgb(169, 236, 248)'
+        backgroundColor: 'rgb(169, 236, 248)'
     }
 }
 
 function AllCards(props) {
-    const { availableCards, selectCard } = props;
+    const { availableCards, selectCard, dealingPosition } = props;
 
     return (
         <Segment textAlign='center' style={AllCards_style.color}>
@@ -24,7 +24,7 @@ function AllCards(props) {
                         alt=''
                         src={`/images/cards/${card}.svg`}
                         className='card'
-                        onClick={() => selectCard(card)} />
+                        onClick={() => selectCard(card, dealingPosition)} />
                 ))}
             </div>
         </Segment >
@@ -37,13 +37,14 @@ AllCards.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        availableCards: state.holdem.availableCards
+        availableCards: state.holdem.availableCards,
+        dealingPosition: state.table.dealingPosition,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        selectCard: card => dispatch(selectCard(card)),
+        selectCard: (card, position) => dispatch(selectCard(card, position)),
     }
 };
 

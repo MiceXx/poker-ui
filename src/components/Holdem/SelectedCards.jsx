@@ -1,20 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Header } from 'semantic-ui-react';
 import { unselectCard } from '../../store/holdem/actions';
 
+const SelectedCards_style = {
+    header: {
+        marginTop: '2px',
+        marginBottom: '2px',
+    }
+};
+
 function SelectedCards(props) {
-    const { selectedCards, unselectCard } = props;
+    const { unselectCard, winPercent, cards, position } = props;
     return (
         <div>
-            {'Win:'}
-            <div className="hand  active-hand">
-                {selectedCards.map(card => (
+            <Header as="h3" content={`Win: ${winPercent}`} style={SelectedCards_style.header} />
+            <div className="hand active-hand">
+                {cards.map(card => (
                     <img
                         className='card'
                         key={card}
                         src={`/images/cards/${card}.svg`}
-                        onClick={() => unselectCard(card)}
+                        onClick={() => unselectCard(card, position)}
                         alt='' />
                 ))}
             </div>
@@ -24,17 +32,21 @@ function SelectedCards(props) {
 
 SelectedCards.propTypes = {
     selectedCards: PropTypes.array.isRequired,
+    winPercent: PropTypes.string.isRequired,
+    cards: PropTypes.array.isRequired,
+    position: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
     return {
-        selectedCards: state.holdem.selectedCards
+        selectedCards: state.holdem.selectedCards,
+        winPercent: state.holdem.winPercent,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        unselectCard: card => dispatch(unselectCard(card)),
+        unselectCard: (card, position) => dispatch(unselectCard(card, position)),
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SelectedCards);

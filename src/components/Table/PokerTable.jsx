@@ -4,6 +4,7 @@ import { Segment, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PokerSeat from './PokerSeat';
 import TableMenu from './TableMenu';
+import CommunityCards from './CommunityCards';
 
 const PokerTable_style = {
     container: {
@@ -25,13 +26,16 @@ const PokerTable_style = {
     containerDiv: {
         display: 'inline-block',
         padding: '5px',
-    }
+    },
+    smallButton: {
+        fontSize: '8px',
+    },
 }
 
 function PokerTable(props) {
     return (
         <Container textAlign='center' style={PokerTable_style.container}>
-            <Segment style={PokerTable_style.segment} floated>
+            <Segment style={PokerTable_style.segment}>
                 <div style={PokerTable_style.containerRow}>
                     {[0, 1, 2, 3].map(seat => (
                         <div
@@ -48,6 +52,7 @@ function PokerTable(props) {
                         <PokerSeat
                             position={8} />
                     </div>
+                    <CommunityCards />
                     <div key={'seat4'} style={PokerTable_style.containerDiv}>
                         <PokerSeat
                             position={4} />
@@ -61,6 +66,7 @@ function PokerTable(props) {
                         </div>
                     ))}
                 </div>
+
                 <TableMenu />
             </Segment>
         </Container>

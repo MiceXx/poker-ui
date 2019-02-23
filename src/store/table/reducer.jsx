@@ -7,6 +7,7 @@ import {
     SELECT_NEXT_DEALER,
     ADD_PLAYER,
     REMOVE_PLAYER,
+    SELECT_DEALING_POSITION,
 } from './actions';
 
 const initialState = {
@@ -14,12 +15,13 @@ const initialState = {
     numberPlayers: 9,
     selectedSeat: 6,
     dealerPosition: 6,
+    dealingPosition: 6,
 }
 
 export default function table(state = Object.assign({}, initialState), action) {
     switch (action.type) {
         case SELECT_PLAYER_SEAT:
-            return Object.assign({}, state, { selectedSeat: action.position });
+            return Object.assign({}, state, { selectedSeat: action.position, dealingPosition: action.position });
         case SELECT_DEALER_POSITION:
             return Object.assign({}, state, { dealerPosition: action.dealerPosition });
         case SELECT_NEXT_DEALER:
@@ -34,6 +36,8 @@ export default function table(state = Object.assign({}, initialState), action) {
                 return Object.assign({}, state, { numberPlayers: state.numberPlayers - 1 });
             }
             return state;
+        case SELECT_DEALING_POSITION:
+            return Object.assign({}, state, { dealingPosition: action.position });
         default:
             return state;
     }
