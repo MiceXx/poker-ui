@@ -1,5 +1,11 @@
 
-export function sortCards(a, b) {
+export function sortAndFilter(arr) {
+    return arr.filter((v, i, a) => a.indexOf(v) === i).sort(sortCards);
+}
+
+function sortCards(a, b) {
+    if (a.includes('Back')) return -1;
+    if (b.includes('Back')) return 1;
     const rankMap = {
         A: 1,
         2: 2,

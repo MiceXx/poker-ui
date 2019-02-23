@@ -9,7 +9,7 @@ import { selectCard } from '../../store/holdem/actions';
 const AllCards_style = {
     color: {
         backgroundColor: 'rgb(169, 236, 248)'
-    }
+    },
 }
 
 function AllCards(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Header, Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { unselectCard } from '../../store/holdem/actions';
 import { selectDealingPosition } from '../../store/table/actions';
 
@@ -23,10 +23,10 @@ function CommunityCards(props) {
     return (
         <div style={CommunityCards_style.main}>
             <div className="hand  active-hand">
-                {communityCards.map(card => (
+                {communityCards.map((card, i) => (
                     <img
                         className='card'
-                        key={card}
+                        key={`${card}${i}`}
                         src={`/images/cards/${card}.svg`}
                         onClick={() => unselectCard(card, -1)}
                         alt='' />

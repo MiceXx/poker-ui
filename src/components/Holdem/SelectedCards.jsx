@@ -17,10 +17,10 @@ function SelectedCards(props) {
         <div>
             <Header as="h3" content={`Win: ${winPercent}`} style={SelectedCards_style.header} />
             <div className="hand active-hand">
-                {cards.map(card => (
+                {cards.map((card, i) => (
                     <img
                         className='card'
-                        key={card}
+                        key={`${card}${i}`}
                         src={`/images/cards/${card}.svg`}
                         onClick={() => unselectCard(card, position)}
                         alt='' />

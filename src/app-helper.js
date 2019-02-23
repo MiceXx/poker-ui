@@ -6,6 +6,10 @@ import {
 } from 'redux';
 import rootReducer from './store/root-reducer';
 
+const middleware = process.env.NODE_ENV !== 'production' ?
+    [require('redux-immutable-state-invariant').default(), thunk] :
+    [thunk];
+
 const composeEnhancers =
     typeof window === 'object' &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
@@ -13,7 +17,7 @@ const composeEnhancers =
         }) : compose;
 
 const enhancer = composeEnhancers(
-    applyMiddleware(thunk),
+    applyMiddleware(...middleware),
 );
 
 export const store = createStore(rootReducer, enhancer);
