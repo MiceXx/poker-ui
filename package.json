@@ -13,7 +13,8 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.85.0"
+    "semantic-ui-react": "^0.85.0",
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +32,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.8",
     "redux-immutable-state-invariant": "^2.1.0"
   }
 }
