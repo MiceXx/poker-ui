@@ -1,4 +1,4 @@
-import { Hand } from '../logic/hand';
+import { Hand, evalArrayBinValue } from '../logic/hand';
 
 describe('Creates Hand from array of strings', () => {
   test('Basic array', () => {
@@ -163,5 +163,20 @@ describe('Test Pair', () => {
     expect(card1._isPair()).toBeFalsy();
     expect(card2._isPair()).toBeFalsy();
     expect(card3._isPair()).toBeFalsy();
+  });
+});
+
+describe('Test bin Eval', () => {
+  test('Test eval', () => {
+    const arr1 = [14, 5, 4, 3, 2];
+    const arr2 = [14, 14, 3, 3, 3];
+    const arr3 = [8, 6, 5, 2, 1];
+    const arr4 = [13, 10, 8, 6, 3];
+    const arr5 = [14, 14, 14, 14, 13];
+    expect(evalArrayBinValue(arr1)).toBe(939058);
+    expect(evalArrayBinValue(arr2)).toBe(975667);
+    expect(evalArrayBinValue(arr3)).toBe(550177);
+    expect(evalArrayBinValue(arr4)).toBe(895075);
+    expect(evalArrayBinValue(arr5)).toBe(978669);
   });
 });

@@ -3,7 +3,19 @@
 
 import { Card } from './card';
 
-const sortDecending = (a: number, b: number) => b - a
+const sortDecending = (a: number, b: number) => b - a;
+
+/*
+Converts an array of numbers into a number based on a most significant value first ordering.
+e.g. [14,13,9,8,3], [2,2,13,8,3], [3,3,3,3,7]
+*/
+export const evalArrayBinValue = (arr: Array<number>): number => {
+    let val = 0;
+    arr.forEach(a => {
+        val = (val << 4) + a;
+    });
+    return val;
+}
 
 export class Hand {
     raw: Array<string>;
@@ -21,6 +33,33 @@ export class Hand {
     validate() {
         if (this.raw.length < 5) throw 'You need 5 cards to create a hand!';
         if ((new Set(this.raw)).size !== 5) throw 'Hands cannot have duplicate cards';
+    }
+
+    getScore() {
+        let score = 0;
+        if (this._isStraightFlush()) {
+            if (this._sortedCardRanks[0] === 14 && this._sortedCardRanks[1] === 5) score = 900;
+            else score = 90000000 + this._sortedCardRanks[0];
+        }
+        else if (this._isFourOfAKind()) {
+            score = 80000000 + this._sortedCardRanks[1];
+        }
+        else if (this._isFullHouse()) {
+            score = 70000000 + this._sortedCardRanks[2];
+        }
+        else if (this._isFlush()) {
+            score = 60000000 + 0; //TODO
+        }
+        else if (this._isStraight()) score = 400000;
+        else if (this._isThreeOfAKind()) {
+            score = 40000000 + this._sortedCardRanks[2];
+        }
+        else if (this._isTwoPairs()) score = 200000;
+        else if (this._isPair()) score = 100000;
+
+
+
+        this.score = score;
     }
 
     _isStraightFlush() {
