@@ -3,8 +3,6 @@
 
 import { Card } from './card';
 
-const sortDecending = (a: number, b: number) => b - a;
-
 /*
 Converts an array of numbers into a number based on a most significant value first ordering.
 e.g. [14,13,9,8,3], [2,2,13,8,3], [3,3,3,3,7]
@@ -26,40 +24,79 @@ export class Hand {
     constructor(cards: Array<string>) {
         this.raw = cards;
         this.cards = cards.map(card => new Card(card));
-        this._sortedCardRanks = (this.cards.map(card => card.rank)).sort(sortDecending);
-        this.validate();
+        this._sortedCardRanks = [];
+        this._sortPokerHand();
+        this._validate();
     }
 
-    validate() {
+    getScore() {
+        if (this._isStraightFlush()) {
+            if (this._sortedCardRanks[0] === 14 && this._sortedCardRanks[1] === 5) {
+                this.score = 9000000;
+            }
+            else this.score = 9000000 + this._sortedCardRanks[0];
+        }
+        else if (this._isFourOfAKind()) {
+            this.score = 8000000 + this._sortedCardRanks[1];
+        }
+        else if (this._isFullHouse()) {
+            this.score = 7000000 + this._sortedCardRanks[2];
+        }
+        else if (this._isFlush()) {
+            this.score = 6000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        else if (this._isStraight()) {
+            this.score = 5000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        else if (this._isThreeOfAKind()) {
+            this.score = 4000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        else if (this._isTwoPairs()) {
+            this.score = 3000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        else if (this._isPair()) {
+            this.score = 2000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        else {
+            this.score = 1000000 + evalArrayBinValue(this._sortedCardRanks);
+        }
+        return this.score;
+    }
+
+    _validate() {
         if (this.raw.length < 5) throw 'You need 5 cards to create a hand!';
         if ((new Set(this.raw)).size !== 5) throw 'Hands cannot have duplicate cards';
     }
 
-    getScore() {
-        let score = 0;
-        if (this._isStraightFlush()) {
-            if (this._sortedCardRanks[0] === 14 && this._sortedCardRanks[1] === 5) score = 900;
-            else score = 90000000 + this._sortedCardRanks[0];
+    _sortPokerHand() {
+        const sortDecending = (a: number, b: number) => b - a;
+        const sortedCards = (this.cards.map(card => card.rank)).sort(sortDecending);
+        if (sortedCards[2] === sortedCards[3] &&
+            sortedCards[3] === sortedCards[4]
+            && sortedCards[4] === sortedCards[5]) {
+            return this._sortedCardRanks = [...sortedCards.slice(-4), ...sortedCards.slice(0, 1)];
         }
-        else if (this._isFourOfAKind()) {
-            score = 80000000 + this._sortedCardRanks[1];
+        if (sortedCards[3] === sortedCards[4]
+            && sortedCards[4] === sortedCards[5]) {
+            return this._sortedCardRanks = [...sortedCards.slice(-3), ...sortedCards.slice(0, 2)];
         }
-        else if (this._isFullHouse()) {
-            score = 70000000 + this._sortedCardRanks[2];
-        }
-        else if (this._isFlush()) {
-            score = 60000000 + 0; //TODO
-        }
-        else if (this._isStraight()) score = 400000;
-        else if (this._isThreeOfAKind()) {
-            score = 40000000 + this._sortedCardRanks[2];
-        }
-        else if (this._isTwoPairs()) score = 200000;
-        else if (this._isPair()) score = 100000;
 
+        function getCardObjIndex(arr: Array<any>, card: number) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].card === card) return i;
+            }
+            return -1;
+        }
 
+        let freqArr: Array<any> = [];
 
-        this.score = score;
+        sortedCards.forEach(card => {
+            let cardObjIndex = getCardObjIndex(freqArr, card);
+            if (cardObjIndex > 0) freqArr[cardObjIndex].freq = freqArr[cardObjIndex].freq + 1;
+            else freqArr.push({ card, freq: 1 });
+        });
+        const sortedFreq = Object.keys(freqMap).sort);
+        sortedFreq
     }
 
     _isStraightFlush() {
