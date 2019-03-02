@@ -51,15 +51,3 @@ export const handScores: { [key: string]: number } = { //TODO NEED TO FINISH
     '6,5,4,3,2': 901,
     '14,5,4,3,2': 900,
 };
-
-/*
-AAAA4
-AAKK2
-AA2KK
-2AAKK
-1048575
-1000000
-1123456789
-978669
-8000000
-*/

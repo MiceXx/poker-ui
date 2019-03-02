@@ -130,7 +130,7 @@ describe('Test Three of a Kind', () => {
 
 describe('Test Two Pairs', () => {
   test('Test True', () => {
-    const card1 = new Hand(['AS', 'KS', 'KC', 'KD', 'AH']);
+    const card1 = new Hand(['AS', 'KS', 'KC', '3D', 'AH']);
     const card2 = new Hand(['4C', '4H', '8H', '6H', '8S']);
     const card3 = new Hand(['AC', '3H', 'AS', '2H', '2C']);
     expect(card1._isTwoPairs()).toBeTruthy();
@@ -140,7 +140,7 @@ describe('Test Two Pairs', () => {
   test('Test False', () => {
     const card1 = new Hand(['AS', 'KS', 'KC', 'KH', '10C']);
     const card2 = new Hand(['4S', '4H', '2H', '6H', '7S']);
-    const card3 = new Hand(['AD', 'AS', 'AC', 'AH', 'JC']);
+    const card3 = new Hand(['AD', 'AS', '2C', '3H', 'JC']);
     expect(card1._isTwoPairs()).toBeFalsy();
     expect(card2._isTwoPairs()).toBeFalsy();
     expect(card3._isTwoPairs()).toBeFalsy();
@@ -178,5 +178,22 @@ describe('Test bin Eval', () => {
     expect(evalArrayBinValue(arr3)).toBe(550177);
     expect(evalArrayBinValue(arr4)).toBe(895075);
     expect(evalArrayBinValue(arr5)).toBe(978669);
+  });
+});
+
+describe('Test Poker Sort', () => {
+  test('Test eval', () => {
+    const card1 = new Hand(['AS', 'KS', '4C', '9C', '10C']);
+    const card2 = new Hand(['4S', '9H', '2H', '6H', '6S']);
+    const card3 = new Hand(['4C', '4S', '9S', '9C', '4D']);
+    const card4 = new Hand(['4C', '4S', '9S', '9C', '3D']);
+    const card5 = new Hand(['2C', '4S', '5S', '9C', '3D']);
+    const card6 = new Hand(['3C', '2H', '2S', '2C', '2D']);
+    expect(card1._sortedCardRanks).toEqual([14, 13, 10, 9, 4]);
+    expect(card2._sortedCardRanks).toEqual([6, 6, 9, 4, 2]);
+    expect(card3._sortedCardRanks).toEqual([4, 4, 4, 9, 9]);
+    expect(card4._sortedCardRanks).toEqual([9, 9, 4, 4, 3]);
+    expect(card5._sortedCardRanks).toEqual([9, 5, 4, 3, 2]);
+    expect(card6._sortedCardRanks).toEqual([2, 2, 2, 2, 3]);
   });
 });

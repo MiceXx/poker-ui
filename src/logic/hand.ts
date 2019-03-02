@@ -81,22 +81,46 @@ export class Hand {
             return this._sortedCardRanks = [...sortedCards.slice(-3), ...sortedCards.slice(0, 2)];
         }
 
-        function getCardObjIndex(arr: Array<any>, card: number) {
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i].card === card) return i;
+        let freqMap: any = {};
+
+        const getHighestCardObjIndex = () => {
+            let highestFreq = 0;
+            let highestCard = 0;
+            let highest = '';
+            for (let i in freqMap) {
+                if (freqMap[i].freq > highestFreq) {
+                    highest = i;
+                    highestFreq = freqMap[i].freq;
+                    highestCard = freqMap[i].card;
+                }
+                else if (freqMap[i].freq === highestFreq) {
+                    if (freqMap[i].card > highestCard) {
+                        highest = i;
+                        highestFreq = freqMap[i].freq;
+                        highestCard = freqMap[i].card;
+                    }
+                }
             }
-            return -1;
+            return highest;
+        }
+        const repeat = (num: any, repeat: number) => {
+            let arr = [];
+            for (let i = 0; i < repeat; i++) {
+                arr.push(num);
+            }
+            return arr;
         }
 
-        let freqArr: Array<any> = [];
-
         sortedCards.forEach(card => {
-            let cardObjIndex = getCardObjIndex(freqArr, card);
-            if (cardObjIndex > 0) freqArr[cardObjIndex].freq = freqArr[cardObjIndex].freq + 1;
-            else freqArr.push({ card, freq: 1 });
+            if (card in freqMap) freqMap[card].freq = freqMap[card].freq + 1;
+            else freqMap[card] = { card, freq: 1 };
         });
-        const sortedFreq = Object.keys(freqMap).sort);
-        sortedFreq
+        while (Object.keys(freqMap).length > 0) {
+            let i = getHighestCardObjIndex();
+            this._sortedCardRanks.push(...repeat(freqMap[i].card, freqMap[i].freq));
+            delete freqMap[i];
+        }
+
     }
 
     _isStraightFlush() {
@@ -104,15 +128,12 @@ export class Hand {
     }
 
     _isFourOfAKind() {
-        return this._sortedCardRanks[0] === this._sortedCardRanks[3]
-            || this._sortedCardRanks[1] === this._sortedCardRanks[4];
+        return this._sortedCardRanks[0] === this._sortedCardRanks[3];
     }
 
     _isFullHouse() {
-        return (this._sortedCardRanks[0] === this._sortedCardRanks[2]
-            && this._sortedCardRanks[3] === this._sortedCardRanks[4])
-            || (this._sortedCardRanks[0] === this._sortedCardRanks[1]
-                && this._sortedCardRanks[2] === this._sortedCardRanks[4]);
+        return this._sortedCardRanks[0] === this._sortedCardRanks[2]
+            && this._sortedCardRanks[3] === this._sortedCardRanks[4];
     }
 
     _isFlush() {
@@ -128,22 +149,15 @@ export class Hand {
     }
 
     _isThreeOfAKind() {
-        return this._sortedCardRanks[0] === this._sortedCardRanks[2]
-            || this._sortedCardRanks[1] === this._sortedCardRanks[3]
-            || this._sortedCardRanks[2] === this._sortedCardRanks[4];
+        return this._sortedCardRanks[0] === this._sortedCardRanks[2];
     }
 
     _isTwoPairs() {
-        return !this._isFourOfAKind()
-            && ((this._sortedCardRanks[0] === this._sortedCardRanks[1]
-                && this._sortedCardRanks[2] === this._sortedCardRanks[3])
-                || (this._sortedCardRanks[0] === this._sortedCardRanks[1]
-                    && this._sortedCardRanks[3] === this._sortedCardRanks[4])
-                || (this._sortedCardRanks[1] === this._sortedCardRanks[2]
-                    && this._sortedCardRanks[3] === this._sortedCardRanks[4]));
+        return this._sortedCardRanks[0] === this._sortedCardRanks[1]
+            && this._sortedCardRanks[2] === this._sortedCardRanks[3];
     }
 
     _isPair() {
-        return (new Set(this._sortedCardRanks)).size !== 5;
+        return this._sortedCardRanks[0] === this._sortedCardRanks[1];
     }
 }
