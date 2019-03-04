@@ -1,4 +1,4 @@
-import { Hand, evalArrayBinValue } from '../logic/hand';
+import { Hand } from '../classes/Hand';
 
 describe('Creates Hand from array of strings', () => {
   test('Basic array', () => {
@@ -173,11 +173,11 @@ describe('Test bin Eval', () => {
     const arr3 = [8, 6, 5, 2, 1];
     const arr4 = [13, 10, 8, 6, 3];
     const arr5 = [14, 14, 14, 14, 13];
-    expect(evalArrayBinValue(arr1)).toBe(939058);
-    expect(evalArrayBinValue(arr2)).toBe(975667);
-    expect(evalArrayBinValue(arr3)).toBe(550177);
-    expect(evalArrayBinValue(arr4)).toBe(895075);
-    expect(evalArrayBinValue(arr5)).toBe(978669);
+    expect(Hand.evalArrayBinValue(arr1)).toBe(939058);
+    expect(Hand.evalArrayBinValue(arr2)).toBe(975667);
+    expect(Hand.evalArrayBinValue(arr3)).toBe(550177);
+    expect(Hand.evalArrayBinValue(arr4)).toBe(895075);
+    expect(Hand.evalArrayBinValue(arr5)).toBe(978669);
   });
 });
 
@@ -195,5 +195,22 @@ describe('Test Poker Sort', () => {
     expect(card4._sortedCardRanks).toEqual([9, 9, 4, 4, 3]);
     expect(card5._sortedCardRanks).toEqual([9, 5, 4, 3, 2]);
     expect(card6._sortedCardRanks).toEqual([2, 2, 2, 2, 3]);
+  });
+});
+
+describe('Test Poker score', () => {
+  test('Test eval', () => {
+    const card1 = new Hand(['AS', 'KS', '4C', '9C', '10C']);
+    const card2 = new Hand(['4S', '9H', '2H', '6H', '6S']);
+    const card3 = new Hand(['4C', '4S', '9S', '9C', '4D']);
+    const card4 = new Hand(['4C', '4S', '9S', '9C', '3D']);
+    const card5 = new Hand(['2C', '4S', '5S', '9C', '3D']);
+    const card6 = new Hand(['3C', '2H', '2S', '2C', '2D']);
+    expect(card1.getScore()).toBe(1973460);
+    expect(card2.getScore()).toBe(2420162);
+    expect(card3.getScore()).toBe(7000004);
+    expect(card4.getScore()).toBe(3627779);
+    expect(card5.getScore()).toBe(1611378);
+    expect(card6.getScore()).toBe(8000002);
   });
 });

@@ -1,24 +1,12 @@
 //tsc -w --outDir 'src/dist/' src/logic/hand.ts
 //tsc --outDir 'src/dist/' src/logic/hand.ts | node src/dist/hand.js
 
-import { Card } from './card';
-
-/*
-Converts an array of numbers into a number based on a most significant value first ordering.
-e.g. [14,13,9,8,3], [2,2,13,8,3], [3,3,3,3,7]
-*/
-export const evalArrayBinValue = (arr: Array<number>): number => {
-    let val = 0;
-    arr.forEach(a => {
-        val = (val << 4) + a;
-    });
-    return val;
-}
+import { Card } from './Card';
 
 export class Hand {
     raw: Array<string>;
     cards: Array<Card>;
-    _sortedCardRanks: Array<number>;  //useful for hand computations
+    _sortedCardRanks: Array<number>;  //needed for hand computations
     score: number = 0;
 
     constructor(cards: Array<string>) {
@@ -43,22 +31,22 @@ export class Hand {
             this.score = 7000000 + this._sortedCardRanks[2];
         }
         else if (this._isFlush()) {
-            this.score = 6000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 6000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         else if (this._isStraight()) {
-            this.score = 5000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 5000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         else if (this._isThreeOfAKind()) {
-            this.score = 4000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 4000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         else if (this._isTwoPairs()) {
-            this.score = 3000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 3000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         else if (this._isPair()) {
-            this.score = 2000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 2000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         else {
-            this.score = 1000000 + evalArrayBinValue(this._sortedCardRanks);
+            this.score = 1000000 + Hand.evalArrayBinValue(this._sortedCardRanks);
         }
         return this.score;
     }
@@ -159,5 +147,16 @@ export class Hand {
 
     _isPair() {
         return this._sortedCardRanks[0] === this._sortedCardRanks[1];
+    }
+
+
+    /*  Converts an array of numbers into a number based on a most significant value first ordering.
+    e.g. [14,13,9,8,3], [2,2,13,8,3], [3,3,3,3,7] */
+    static evalArrayBinValue = (arr: Array<number>): number => {
+        let val = 0;
+        arr.forEach(a => {
+            val = (val << 4) + a;
+        });
+        return val;
     }
 }

@@ -1,4 +1,4 @@
-import { Card } from '../logic/card';
+import { Card } from '../classes/card';
 
 describe('Creates Cards from strings', () => {
   beforeEach(() => {
