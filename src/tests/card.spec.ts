@@ -1,10 +1,6 @@
-import { Card } from '../classes/card';
+import { Card } from '../classes/Card';
 
 describe('Creates Cards from strings', () => {
-  beforeEach(() => {
-  });
-  afterAll(() => {
-  });
   test('Basic strings', () => {
     const card1 = new Card('10C');
     const card2 = new Card('AS');

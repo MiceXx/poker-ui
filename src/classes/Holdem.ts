@@ -8,15 +8,13 @@ export class Holdem {
     playerCards: Array<Array<string>>;
     numPlayers: number;
     numAvailableCards: number;
-    numAssumedOutstanding: number;
 
     constructor() {
         this.availableCards = ALL_CARDS;
         this.communityCards = [];
-        this.playerCards = [[]];
+        this.playerCards = [];
         this.numPlayers = 0;
         this.numAvailableCards = 52;
-        this.numAssumedOutstanding = 52;
     }
 
     addCommunityCard(card: string) {
@@ -26,7 +24,6 @@ export class Holdem {
         this.availableCards.splice(idx, 1);
         this.communityCards.push(card);
         this.numAvailableCards--;
-        this.numAssumedOutstanding--;
     }
 
     removeCommunityCard(card: string) {
@@ -36,21 +33,26 @@ export class Holdem {
         this.communityCards.splice(idx);
         this.availableCards.push(card);
         this.numAvailableCards++;
-        this.numAssumedOutstanding++;
     }
 
-    addPlayer() {
-        if (this.numPlayers >= 9) throw `Max 9 players allowed`;
-        this.playerCards.push(['Back', 'Back']);
-        this.numPlayers++;
-        this.numAssumedOutstanding = this.numAssumedOutstanding - 2;
+    addPlayers(n: number = 1) {
+        if (n < 1 || n > 9) throw 'Enter a number between 1 and 9';
+        if (this.numPlayers + n > 9) throw `Max 9 players allowed`;
+        for (let i = 0; i < n; i++) {
+            this.playerCards.push(['Back', 'Back']);
+        }
+        this.numPlayers = this.numPlayers + n;
+        this.numAvailableCards = this.numAvailableCards - 2 * n;
     }
 
-    removePlayer() {
-        if (this.numPlayers <= 9) throw `No more players to remove`;
-        this.playerCards.pop();
-        this.numPlayers--;
-        this.numAssumedOutstanding = this.numAssumedOutstanding + 2;
+    removePlayers(n: number = 1) {
+        if (n < 1 || n > 9) throw 'Enter a number between 1 and 9';
+        if (this.numPlayers - n < 0) throw `No more players to remove`;
+        for (let i = 0; i < n; i++) {
+            this.playerCards.pop();
+        }
+        this.numPlayers = this.numPlayers - n;
+        this.numAvailableCards = this.numAvailableCards + 2 * n;
     }
 
     setPlayerCards(player: number, cards: Array<string>) {
@@ -62,9 +64,43 @@ export class Holdem {
         if (this.numPlayers < player) throw `Player ${player} does not exist`;
         this.availableCards.splice(idx1, 1);
         this.availableCards.splice(idx2, 1);
-        this.numAvailableCards = this.numAvailableCards - 2;
-
         this.playerCards[player] = cards;
     }
 
+    computeWinPercent() {
+
+    }
+
+    static getCombinations(arr: Array<string>, len: number): Array<Array<string>> {
+        let allCombinations: Array<Array<string>> = [];
+        function combinationHelper(arr: Array<string>, len: number, cur: Array<string> = []) {
+            if (len > 0) {
+                for (let i = 0; i < arr.length; i++) {
+                    cur.push(arr[i]);
+                    combinationHelper(arr, len - 1, cur);
+                }
+            } else {
+                allCombinations.push(cur);
+            }
+        }
+        combinationHelper(arr, len);
+        return allCombinations;
+    }
+
+    static findBestHand(hand: Array<string>, board: Array<string>) {
+        const allCards = [...hand, ...board];
+        const allCombinations = Holdem.getCombinations(allCards, 5);
+        let bestHandValue = 0;
+        let bestHand;
+        for (let i = 0; i < allCombinations.length; i++) {
+            const h = new Hand(allCombinations[i]);
+            let handValue = h.getScore();
+            if (handValue > bestHandValue) {
+                bestHandValue = handValue;
+                bestHand = h;
+            }
+        }
+        return bestHand;
+    }
 }
+

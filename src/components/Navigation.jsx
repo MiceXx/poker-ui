@@ -17,16 +17,6 @@ const navOptions = [
         to: '/omaha',
         name: 'Omaha',
     },
-    {
-        key: 'stud',
-        to: '/stud',
-        name: 'Stud',
-    },
-    {
-        key: 'test',
-        to: '/test',
-        name: 'Test',
-    },
 ];
 
 class SimpleBottomNavigation extends React.Component {
@@ -47,8 +37,6 @@ class SimpleBottomNavigation extends React.Component {
                 <Route exact path="/" component={HoldEmCalculator} />
                 <Route path="/holdem" component={HoldEmCalculator} />
                 <Route path="/omaha" component={HoldEmCalculator} />
-                <Route path="/stud" component={HoldEmCalculator} />
-                <Route path="/test" component={TestComponent} />
             </div>
         );
     }
