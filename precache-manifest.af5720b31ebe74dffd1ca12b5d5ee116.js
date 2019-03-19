@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/poker-calculator/static/media/icons.962a1bf3.svg"
   },
   {
-    "revision": "0c43d0157c42e6817846",
+    "revision": "e53a8713122f00d6851b",
     "url": "/poker-calculator/static/css/main.b2ab9c4d.chunk.css"
   },
   {
@@ -32,20 +32,20 @@ self.__precacheManifest = [
     "url": "/poker-calculator/static/media/icons.8e3c7f55.eot"
   },
   {
-    "revision": "faff92145777a3cbaf8e7367b4807987",
-    "url": "/poker-calculator/static/media/icons.faff9214.woff"
-  },
-  {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
     "url": "/poker-calculator/static/media/icons.0ab54153.woff2"
+  },
+  {
+    "revision": "faff92145777a3cbaf8e7367b4807987",
+    "url": "/poker-calculator/static/media/icons.faff9214.woff"
   },
   {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/poker-calculator/static/media/icons.b87b9ba5.ttf"
   },
   {
-    "revision": "0c43d0157c42e6817846",
-    "url": "/poker-calculator/static/js/main.0c43d015.chunk.js"
+    "revision": "e53a8713122f00d6851b",
+    "url": "/poker-calculator/static/js/main.e53a8713.chunk.js"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
@@ -72,12 +72,12 @@ self.__precacheManifest = [
     "url": "/poker-calculator/static/media/brand-icons.13db00b7.eot"
   },
   {
-    "revision": "a046592bac8f2fd96e994733faf3858c",
-    "url": "/poker-calculator/static/media/brand-icons.a046592b.woff"
-  },
-  {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/poker-calculator/static/media/brand-icons.e8c322de.woff2"
+  },
+  {
+    "revision": "a046592bac8f2fd96e994733faf3858c",
+    "url": "/poker-calculator/static/media/brand-icons.a046592b.woff"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/poker-calculator/static/css/1.2a4a2f6d.chunk.css"
   },
   {
-    "revision": "35fafc44308a36c7cc11a9042c9d314a",
+    "revision": "1caf2d61f8afdf9bab14763d21942c10",
     "url": "/poker-calculator/index.html"
   }
 ];
