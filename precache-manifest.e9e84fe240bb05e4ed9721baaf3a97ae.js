@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "701ae6abd4719e9c2ada3535a497b341",
-    "url": "/poker-calculator/static/media/outline-icons.701ae6ab.eot"
+    "revision": "cd6c777f1945164224dee082abaea03a",
+    "url": "/poker-calculator/static/media/outline-icons.cd6c777f.woff2"
   },
   {
     "revision": "997ec1fb4e0e6b1882cc",
@@ -48,20 +48,12 @@ self.__precacheManifest = [
     "url": "/poker-calculator/static/js/main.997ec1fb.chunk.js"
   },
   {
-    "revision": "962a1bf31c081691065fe333d9fa8105",
-    "url": "/poker-calculator/static/media/icons.962a1bf3.svg"
-  },
-  {
-    "revision": "cd6c777f1945164224dee082abaea03a",
-    "url": "/poker-calculator/static/media/outline-icons.cd6c777f.woff2"
+    "revision": "701ae6abd4719e9c2ada3535a497b341",
+    "url": "/poker-calculator/static/media/outline-icons.701ae6ab.eot"
   },
   {
     "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
     "url": "/poker-calculator/static/media/outline-icons.ef60a4f6.woff"
-  },
-  {
-    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
-    "url": "/poker-calculator/static/media/outline-icons.82f60bd0.svg"
   },
   {
     "revision": "ad97afd3337e8cda302d10ff5a4026b8",
@@ -70,6 +62,14 @@ self.__precacheManifest = [
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "/poker-calculator/static/media/brand-icons.13db00b7.eot"
+  },
+  {
+    "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
+    "url": "/poker-calculator/static/media/outline-icons.82f60bd0.svg"
+  },
+  {
+    "revision": "962a1bf31c081691065fe333d9fa8105",
+    "url": "/poker-calculator/static/media/icons.962a1bf3.svg"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
