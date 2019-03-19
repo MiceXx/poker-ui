@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 See http://gitname.github.io/poker-calculator
 
+NOTE: Calculations used are only estimates and are a work in progress
+
 Deployment to gh-pages
 -----------
 Add the following to package.json

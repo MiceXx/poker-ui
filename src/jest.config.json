@@ -1,4 +1,4 @@
-module.exports = {
+{
     "roots": [
         "<rootDir>/src"
     ],
@@ -13,5 +13,5 @@ module.exports = {
         "jsx",
         "json",
         "node"
-    ],
+    ]
 }
