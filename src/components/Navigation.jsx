@@ -4,7 +4,6 @@ import { Menu } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 
 import HoldEmCalculator from './Holdem/HoldemCalculator';
-import TestComponent from './TestComponent/TestComponent';
 
 const navOptions = [
     {
