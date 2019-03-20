@@ -1,8 +1,9 @@
+
+# Poker UI
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Poker Calculator
-
-See http://micexx.github.io/poker-calculator
+See http://micexx.github.io/poker-ui
 
 NOTE: Calculations used are only estimates and are a work in progress
 
