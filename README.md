@@ -10,7 +10,7 @@ Deployment to gh-pages
 -----------
 Add the following to package.json
 ```
-  "homepage": "http://micexx.github.io/poker-calculator"
+  "homepage": "http://micexx.github.io/poker-calgculator"
   ```
   
   Add these scripts under scripts in package.json
