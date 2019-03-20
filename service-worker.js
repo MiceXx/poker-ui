@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/poker-calculator/precache-manifest.af5720b31ebe74dffd1ca12b5d5ee116.js"
+  "/poker-calculator/precache-manifest.7315a2b50c1f384a50d5d115bfdcb66d.js"
 );
 
 workbox.clientsClaim();
