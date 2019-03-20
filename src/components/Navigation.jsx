@@ -33,7 +33,7 @@ class SimpleBottomNavigation extends React.Component {
                         onClick={this.handleItemClick} />
                     )}
                 </Menu>
-                <Route exact path="/" component={HoldEmCalculator} />
+                <Route path="/" component={HoldEmCalculator} />
                 <Route path="/holdem" component={HoldEmCalculator} />
                 <Route path="/omaha" component={HoldEmCalculator} />
             </div>

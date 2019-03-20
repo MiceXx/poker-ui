@@ -21,7 +21,7 @@ function SelectedCards(props) {
                     <img
                         className='card'
                         key={`${card}${i}`}
-                        src={`/images/cards/${card}.svg`}
+                        src={require(`../../images/cards/${card}.svg`)}
                         onClick={() => unselectCard(card, position)}
                         alt='' />
                 ))}

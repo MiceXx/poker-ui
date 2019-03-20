@@ -27,7 +27,7 @@ function CommunityCards(props) {
                     <img
                         className='card'
                         key={`${card}${i}`}
-                        src={`/images/cards/${card}.svg`}
+                        src={require(`../../images/cards/${card}.svg`)}
                         onClick={() => unselectCard(card, -1)}
                         alt='' />
                 ))}

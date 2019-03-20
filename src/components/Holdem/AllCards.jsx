@@ -20,7 +20,7 @@ function AllCards(props) {
                     <img
                         key={card}
                         alt=''
-                        src={`/images/cards/${card}.svg`}
+                        src={require(`../../images/cards/${card}.svg`)}
                         className='card'
                         onClick={() => selectCard(card, dealingPosition)} />
                 ))}
