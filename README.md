@@ -1,6 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Poker Calculator
+####Poker Calculator
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 See http://micexx.github.io/poker-calculator
 
