@@ -2,7 +2,7 @@
   "name": "poker-calculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gitname.github.io/poker-calculator",
+  "homepage": "http://micexx.github.io/poker-calculator",
   "dependencies": {
     "react": "^16.8.1",
     "react-bootstrap": "^1.0.0-beta.5",
@@ -36,6 +36,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^24.0.8",
+    "gh-pages": "^2.0.1",
     "redux-immutable-state-invariant": "^2.1.0"
   }
 }

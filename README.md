@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 #Poker Calculator
 
-See http://gitname.github.io/poker-calculator
+See http://micexx.github.io/poker-calculator
 
 NOTE: Calculations used are only estimates and are a work in progress
 
@@ -10,7 +10,7 @@ Deployment to gh-pages
 -----------
 Add the following to package.json
 ```
-  "homepage": "http://gitname.github.io/poker-calculator"
+  "homepage": "http://micexx.github.io/poker-calculator"
   ```
   
   Add these scripts under scripts in package.json
